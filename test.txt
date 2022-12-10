@@ -1,0 +1,26 @@
+local RC6 = Instance.new("ScreenGui")
+
+--Properties:
+
+RC6.Name = "RC6"
+RC6.Parent = game.CoreGui
+RC6.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- Scripts:
+
+local function HRQM_fake_script() -- RC6.LocalScript 
+	local script = Instance.new('LocalScript', RC6)
+	wait(1.2)
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "RC6";
+		Text = "RC6 has successfuly injected.",
+		Icon = "http://www.roblox.com/asset/?id=8598807921";
+	})
+	wait(1.2)
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "RC6";
+		Text = "Filtering is enabled.",
+		Icon = "http://www.roblox.com/asset/?id=8598807921";
+	})
+end
+coroutine.wrap(HRQM_fake_script)()
