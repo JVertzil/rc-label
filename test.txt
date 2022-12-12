@@ -19,8 +19,28 @@ local function HRQM_fake_script() -- RC6.LocalScript
 	wait(1.2)
 	game:GetService("StarterGui"):SetCore("SendNotification", {
 		Title = "RC6";
-		Text = "Filtering is enabled.",
+		Text = "Filtering is disabled.",
 		Icon = "http://www.roblox.com/asset/?id=8598807921";
 	})
 end
 coroutine.wrap(HRQM_fake_script)()
+
+local _filtering = nil
+local __game = game:GetService("Workspace")
+
+function patch()
+    -- Overflow
+    char_overflow = ""
+    char_ = "𒈙"
+    for i = 0, 127 do
+        char_overflow = char_overflow..char_
+    end
+    return char_overflow
+end
+
+_filtering = hookmetamethod(game, "__index", function(k, v)
+    if k == __game and v == "FilteringEnabled" then
+        return patch() and false
+    end
+    return _filtering(k, v)
+end)
